@@ -1,0 +1,21 @@
+<ion-view view-title="Timer Sets" nav-back-button="hSD">
+    <ion-nav-buttons side="secondary">
+        <button class="button" data-ng-click="addTimerSet()">
+            Add
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-list can-swipe="canSwipe" show-reorder="showReorder">
+            <ion-item ng-repeat="set in timerSets" ui-sref="app.count-down({id: $index})">
+                <h2>{{set.name}}</h2>
+                <p>{{ set.phases.length }} phases ({{ totalTime(set) / 60 | number:1 }} minutes)</p>
+                <ion-option-button class="button-assertive" ng-click="deleteTimerSet($index)">
+                    Delete
+                </ion-option-button>
+                <ion-option-button class="button-positive" ng-click="editTimerSet($index)">
+                    Edit
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

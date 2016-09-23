@@ -1,0 +1,12 @@
+{
+  "name": "OM Timer",
+  "app_id": "d0eb0aa8",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
+}

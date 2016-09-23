@@ -1,0 +1,21 @@
+<ion-view view-title="{{ timerSet.name }}">
+    <ion-content padding="true" class="timer">
+        <div class="text-center padding-vertical">
+            <h1 style="font-size: 7em;"> {{ time | secondsToTime }}</h1>
+        </div>
+        <div class="text-center padding-vertical">
+            <h2 class="padding-vertical">{{ currentPhase.name }}</h2>
+            <button ng-show="!running&&!resetted" on-tap="resetCountDown()"
+                    class="button button-calm ion-refresh"></button>
+            <button ng-hide="running" on-tap="startCountDown()" class="button button-balanced">
+                <span ng-show="resetted">
+                <i class="icon-left ion-android-alarm-clock"></i> Start</span>
+                <i class="icon-left ion-play" ng-show="!running&&!resetted"></i>
+                <span ng-hide="resetted">
+                    {{ time | secondsToTime }}
+                </span>
+            </button>
+            <button on-tap="stopCountDown()" ng-show="running" class="button button-assertive ion-pause"></button>
+        </div>
+    </ion-content>
+</ion-view>
