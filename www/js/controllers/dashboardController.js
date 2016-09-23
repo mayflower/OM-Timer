@@ -5,20 +5,6 @@
     '$scope', 'timerSetRepository', '$state', '$ionicListDelegate',
     function ($scope, timerSetRepository, $state, $ionicListDelegate) {
 
-      $scope.timerSets = loadTimerSets();
-      $scope.totalTime = getTotalTimeFromPhases;
-      $scope.addTimerSet = addTimerSet;
-      $scope.deleteTimerSet = deleteTimerSet;
-      $scope.editTimerSet = function (index) {
-        $ionicListDelegate.closeOptionButtons();
-        $state.go('app.edit-timer-set', {id: index});
-      };
-      $scope.canSwipe = true;
-      $scope.showReorder = false;
-      $scope.start = function () {
-        console.log('Starting timer');
-      };
-
       function loadTimerSets() {
         return timerSetRepository.getAll();
       }
@@ -43,6 +29,21 @@
         return total;
       }
 
+      function editTimer(index) {
+        $ionicListDelegate.closeOptionButtons();
+        $state.go('app.editTimerSet', {id: index});
+      }
+
+      $scope.timerSets = loadTimerSets();
+      $scope.totalTime = getTotalTimeFromPhases;
+      $scope.addTimerSet = addTimerSet;
+      $scope.deleteTimerSet = deleteTimerSet;
+      $scope.editTimerSet = editTimer;
+      $scope.canSwipe = true;
+      $scope.showReorder = false;
+      $scope.start = function () {
+        console.log('Starting timer');
+      };
     }]
   );
 

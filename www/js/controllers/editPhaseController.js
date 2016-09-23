@@ -12,7 +12,7 @@
       $scope.back = back;
 
       function back() {
-        $state.go('app.edit-timer-set', {id: timerSetId})
+        $state.go('app.editTimerSet', {id: timerSetId})
       }
 
       function save() {

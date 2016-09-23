@@ -5,8 +5,16 @@
         </div>
         <div class="text-center padding-vertical">
             <h2 class="padding-vertical">{{ currentPhase.name }}</h2>
+        </div>
+        <div class="text-center padding-vertical">
+            <button class="button button-clear button-light pull-left" on-tap="previousPhase()">
+                <i class="ion-arrow-left-b"></i>
+            </button>
+            <button class="button button-clear button-light pull-right" on-tap="nextPhase()">
+                <i class="ion-arrow-right-b"></i>
+            </button>
             <button ng-show="!running&&!resetted" on-tap="resetCountDown()"
-                    class="button button-calm ion-refresh"></button>
+                    class="button button-light button-clear ion-refresh"></button>
             <button ng-hide="running" on-tap="startCountDown()" class="button button-balanced">
                 <span ng-show="resetted">
                 <i class="icon-left ion-android-alarm-clock"></i> Start</span>
@@ -15,7 +23,7 @@
                     {{ time | secondsToTime }}
                 </span>
             </button>
-            <button on-tap="stopCountDown()" ng-show="running" class="button button-assertive ion-pause"></button>
+            <button on-tap="stopCountDown()" ng-show="running" class="button button-clear button-light ion-pause"></button>
         </div>
     </ion-content>
 </ion-view>

@@ -11,7 +11,7 @@
 
       function editPhase(phaseId) {
         $ionicListDelegate.closeOptionButtons();
-        $state.go('app.phase-edit', {timerSetId: timerSetId, phaseId: phaseId})
+        $state.go('app.phaseEdit', {timerSetId: timerSetId, phaseId: phaseId})
       }
 
       function deletePhase(phaseId, phase) {

@@ -17,7 +17,7 @@
           }
         }
       })
-      .state('app.edit-timer-set', {
+      .state('app.editTimerSet', {
         url: '/timer-set/:id',
         views: {
           'menuContent': {
@@ -34,7 +34,7 @@
           }]
         }
       })
-      .state('app.phase-edit', {
+      .state('app.phaseEdit', {
         url: '/timer-set/:timerSetId/phase/:phaseId',
         views: {
           'menuContent': {
@@ -54,7 +54,7 @@
           }]
         }
       })
-      .state('app.count-down', {
+      .state('app.countDown', {
         url: '/count-down/:id',
         views: {
           'menuContent': {
@@ -68,7 +68,15 @@
           }]
         }
       })
-      .state('reset', {
+      .state('app.info', {
+        url: '/info',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/info.html'
+          }
+        }
+      })
+      .state('app.reset', {
         url: '/reset',
         onEnter: ['$state', 'timerSetRepository', function ($state, timerSetRepository) {
           if (confirm('Really reset all data?')) {
@@ -77,6 +85,7 @@
           $state.go('app.timerSets');
         }]
       });
+
     $urlRouterProvider.otherwise('/app/timer-sets');
   });
 }(angular.module('omtimer'));

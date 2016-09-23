@@ -5,6 +5,20 @@
 
 .timer h1, .timer h2 {
     color: white;
+    padding: 0;
     /*text-shadow: 1px 1px 3px rgba(0, 0, 0, .2);*/
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+.timer .row button {
+    background-color: rgba(255, 255, 255, .2);
+    color: white;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
 }
