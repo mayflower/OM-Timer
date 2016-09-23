@@ -65,6 +65,14 @@
         switchPhase();
       }
 
+      function toggleCountDown() {
+        if ($scope.running) {
+          stopCountDown();
+        } else {
+          startCountDown();
+        }
+      }
+
       $scope.running = false;
       $scope.resetted = true;
       $scope.currentPhase = timerSet.phases[currentPhaseId];
@@ -75,6 +83,7 @@
       $scope.stopCountDown = stopCountDown;
       $scope.previousPhase = previousPhase;
       $scope.nextPhase = nextPhase;
+      $scope.toggleCountDown = toggleCountDown;
       // Make sure that the interval is destroyed too
       $scope.$on('$destroy', function () {
         stopCountDown();
