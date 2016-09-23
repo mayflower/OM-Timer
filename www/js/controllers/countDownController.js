@@ -25,6 +25,7 @@
       function previousPhase() {
         currentPhaseId--;
         if (0 > currentPhaseId) {
+          currentPhaseId = 0;
           throw 'Already first phase';
         }
         switchPhase();
@@ -33,6 +34,7 @@
       function nextPhase() {
         currentPhaseId++;
         if (timerSet.phases.length <= currentPhaseId) {
+          currentPhaseId = timerSet.phases.length - 1;
           throw 'Already last phase'
         }
         switchPhase();
@@ -71,7 +73,7 @@
       $scope.resetCountDown = resetCountDown;
       $scope.startCountDown = startCountDown;
       $scope.stopCountDown = stopCountDown;
-      $scope.previousPHase = previousPhase;
+      $scope.previousPhase = previousPhase;
       $scope.nextPhase = nextPhase;
       // Make sure that the interval is destroyed too
       $scope.$on('$destroy', function () {
