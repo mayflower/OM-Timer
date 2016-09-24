@@ -5,8 +5,4 @@ node_modules/
 platforms/
 plugins/
 .io-config.json
-.idea/atlassian-ide-plugin.xml
-.idea/encodings.xml
-.idea/modules.xml
-.idea/OMTimer.iml
-.idea/workspace.xml
+.idea

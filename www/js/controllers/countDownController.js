@@ -4,11 +4,24 @@
   var $runningInterval;
 
   app.controller('CountDownController', [
-    '$scope', 'timerSet', '$interval',
-    function ($scope, timerSet, $interval) {
+    '$scope', 'timerSet', '$interval', '$window', '$ionicNavBarDelegate',
+    function ($scope, timerSet, $interval, $window, $ionicNavBarDelegate) {
 
       var currentPhaseId = 0;
       var oneSecond = 1000;
+      var insomnia = ($window.hasOwnProperty('plugins') && $window.plugins.hasOwnProperty('insomnia')) ? $window.plugins.insomnia : false;
+
+      function preventScreenLock() {
+        if (insomnia) {
+          insomnia.keepAwake();
+        }
+      }
+
+      function allowScreenLock() {
+        if (insomnia) {
+          insomnia.allowSleepAgain();
+        }
+      }
 
       function countDown() {
         $scope.time--;
@@ -17,7 +30,7 @@
             nextPhase();
             $scope.$emit('sound', $scope.currentPhase);
           } catch (err) {
-            stopCountDown();
+            resetCountDown();
           }
         }
       }
@@ -46,12 +59,16 @@
       }
 
       function startCountDown() {
+        $ionicNavBarDelegate.showBar(false);
+        preventScreenLock();
         $scope.running = true;
         $scope.resetted = false;
         $runningInterval = $interval(countDown, oneSecond);
       }
 
       function stopCountDown() {
+        $ionicNavBarDelegate.showBar(true);
+        allowScreenLock();
         $scope.running = false;
         $interval.cancel($runningInterval);
         $runningInterval = undefined;
@@ -73,6 +90,7 @@
         }
       }
 
+      $scope.hasInsomnia = insomnia;
       $scope.running = false;
       $scope.resetted = true;
       $scope.currentPhase = timerSet.phases[currentPhaseId];

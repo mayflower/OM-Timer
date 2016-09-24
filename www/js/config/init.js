@@ -3,6 +3,23 @@
   app.factory('initFactory', function () {
     return [
       {
+        name: 'Debugging',
+        phases: [
+          {
+            name: 'Phase 1',
+            time: 5,
+            alarmSound: 'bing2',
+            selfStoppingSound: true
+          },
+          {
+            name: 'Phase 2',
+            time: 6,
+            alarmSound: 'bing1',
+            selfStoppingSound: true
+          },
+        ]
+      },
+      {
         name: 'Meditation',
         phases: [
           {

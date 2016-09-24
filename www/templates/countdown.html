@@ -8,6 +8,7 @@
         </div>
         <div class="text-center padding-vertical">
             <div class="row">
+
                 <div class="col">
                     <!--Previous phase-->
                     <button ng-hide="running" class="button button-clear button-light"
@@ -15,16 +16,16 @@
                         <i class="ion-arrow-left-b"></i>
                     </button>
                 </div>
+
                 <div class="col">
                     <!--Reset timer-->
                     <button ng-show="!running&&!resetted"
                             on-tap="resetCountDown()"
                             class="button button-light button-clear ion-refresh"></button>
                     <!--Start timer-->
-                    <button class="button button-balanced icon-left ion-android-alarm-clock"
+                    <button class="button button-balanced ion-android-alarm-clock"
                             on-tap="startCountDown()"
                             ng-show="!running&&resetted">
-                        Start
                     </button>
                     <button ng-show="!running&&!resetted" on-tap="toggleCountDown()"
                             class="button button-light button-clear ion-play"></button>
