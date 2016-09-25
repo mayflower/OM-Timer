@@ -3,11 +3,6 @@
   app.controller('EditTimerSetController', [
     'index', 'timerSet', '$scope', '$state', 'timerSetRepository', '$ionicListDelegate',
     function (timerSetId, timerSet, $scope, $state, timerSetRepository, $ionicListDelegate) {
-      $scope.timerSet = timerSet;
-      $scope.index = timerSetId;
-      $scope.swipeEnabled = true;
-      $scope.editPhase = editPhase;
-      $scope.deletePhase = deletePhase;
 
       function editPhase(phaseId) {
         $ionicListDelegate.closeOptionButtons();
@@ -20,5 +15,12 @@
           $scope.timerSet = timerSetRepository.removePhase(timerSetId, phaseId);
         }
       }
+
+      $scope.timerSet = timerSet;
+      $scope.index = timerSetId;
+      $scope.swipeEnabled = true;
+      $scope.editPhase = editPhase;
+      $scope.deletePhase = deletePhase;
+
     }]);
 }(window.angular.module('omtimer'));

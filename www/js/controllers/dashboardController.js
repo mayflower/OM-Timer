@@ -17,7 +17,8 @@
       }
 
       function addTimerSet() {
-        alert('Create new...');
+        var newId = timerSetRepository.createNew();
+        $state.go('app.editTimerSet', {id: newId});
       }
 
       function getTotalTimeFromPhases(timerSet) {
@@ -41,9 +42,6 @@
       $scope.editTimerSet = editTimer;
       $scope.canSwipe = true;
       $scope.showReorder = false;
-      $scope.start = function () {
-        console.log('Starting timer');
-      };
     }]
   );
 

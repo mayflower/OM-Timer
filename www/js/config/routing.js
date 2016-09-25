@@ -63,10 +63,18 @@
           }
         },
         resolve: {
-          timerSet: ['timerSetRepository', '$stateParams', function (timerSetRepository, $stateParams) {
-            return timerSetRepository.getByIndex($stateParams.id);
-          }]
-        }
+          timerSet: ['timerSetRepository', '$stateParams',
+            function (timerSetRepository, $stateParams) {
+              return timerSetRepository.getByIndex($stateParams.id);
+            }]
+        },
+        onEnter: ['timerSet', '$state', function (timerSet, $state) {
+          if (!angular.isDefined(timerSet.phases) || timerSet.phases.length === 0) {
+            alert('Missing timer phases. Please add them.');
+            $state.go('app.timerSets');
+            return false;
+          }
+        }]
       })
       .state('app.info', {
         url: '/info',
@@ -82,7 +90,7 @@
           if (confirm('Really reset all data?')) {
             timerSetRepository.reset();
           }
-          $state.go('app.timerSets');
+          $state.go('app.timerSets', {reload: true});
         }]
       });
 

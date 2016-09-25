@@ -1,26 +1,21 @@
 !function (app) {
   'use strict';
 
-  var $runningInterval;
-
   app.controller('CountDownController', [
     '$scope', 'timerSet', '$interval', '$window', '$ionicNavBarDelegate',
     function ($scope, timerSet, $interval, $window, $ionicNavBarDelegate) {
 
+      var $runningInterval;
       var currentPhaseId = 0;
       var oneSecond = 1000;
       var insomnia = ($window.hasOwnProperty('plugins') && $window.plugins.hasOwnProperty('insomnia')) ? $window.plugins.insomnia : false;
 
       function preventScreenLock() {
-        if (insomnia) {
-          insomnia.keepAwake();
-        }
+        insomnia && insomnia.keepAwake();
       }
 
       function allowScreenLock() {
-        if (insomnia) {
-          insomnia.allowSleepAgain();
-        }
+        insomnia && insomnia.allowSleepAgain();
       }
 
       function countDown() {

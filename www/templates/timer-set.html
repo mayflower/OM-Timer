@@ -1,11 +1,12 @@
 <ion-view view-title="{{timerSet.name}}">
     <ion-content padding="true">
+        <div class="item item-divider">Timer settings</div>
         <label class="item item-input item-stacked-label">
             <span class="input-label">Timer Set Name</span>
             <input type="text" placeholder="Mediation" ng-model="timerSet.name"/>
         </label>
         <ion-list show-reorder="reorderEnabled" can-swipe="swipeEnabled">
-            <div class="item item-divider">Phases</div>
+            <div class="item item-divider">{{ timerSet.phases.length }} Phases</div>
             <ion-item ng-repeat="phase in timerSet.phases track by $index">
                 <h2>{{ phase.name }}</h2>
                 <p>
@@ -29,4 +30,15 @@
             <ion-item on-touch="addPhase()"><i class="ion-plus-circled"></i> Add phase</ion-item>
         </ion-list>
     </ion-content>
+
+    <div class="bar-footer bar">
+        <div class="button-bar">
+            <button class="button button-stable button-outline"
+                    on-touch="back()">Cancel
+            </button>
+            <button on-touch="save()" class="button button-positive">
+                Save
+            </button>
+        </div>
+    </div>
 </ion-view>
