@@ -35,6 +35,11 @@
         $state.go('app.timerSetEdit', {timerSetId: index});
       }
 
+      // Initialize timer reset if no timers found
+      if (!angular.isArray($scope.timerSets) || 0 === $scope.timerSets.length) {
+        $state.go('app.reset', {confirm: 'no'});
+      }
+
       $scope.totalTime = getTotalTimeFromPhases;
       $scope.addTimerSet = addTimerSet;
       $scope.deleteTimerSet = deleteTimerSet;

@@ -9,7 +9,7 @@
         Media.play(sound);
       });
 
-      $scope.unbindLocalStorage = localStorageService.bind($scope, 'timerSets')
+      $scope.unbindLocalStorage = localStorageService.bind($scope, 'timerSets', [])
 
     }]);
 }(window.angular.module('omtimer'));

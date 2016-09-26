@@ -79,16 +79,17 @@
         }
       })
       .state('app.reset', {
-        url: '/reset',
-        onEnter: ['$state', 'localStorageService', 'initialTemplate', '$timeout',
-          function ($state, localStorageService, initialTemplate, $timeout) {
-            if (confirm('Really reset all data?')) {
-              localStorageService.set('timerSets', initialTemplate);
-            }
-            $timeout(function () {
-              $state.go('app.timerSets', {reload: true});
-            }, 1000);
+        url: '/reset/:confirm',
+        views: {
+          'menuContent': {
+            controller: 'ResetController'
+          }
+        },
+        resolve: {
+          confirmation: ['$stateParams', function ($stateParams) {
+            return $stateParams.confirm;
           }]
+        },
       });
 
     $urlRouterProvider.otherwise('/app/timer-sets');
