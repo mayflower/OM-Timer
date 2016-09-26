@@ -1,6 +1,6 @@
 <ion-view view-title="{{timerSet.name}}">
   <ion-nav-buttons side="secondary">
-    <button class="button" on-touch="addPhase()">
+    <button class="button" on-tap="addPhase()">
       <i class="ion-ios-plus-outline"></i>
       Add Phase
     </button>
@@ -29,17 +29,17 @@
                     </span>
         -->
         </p>
-        <ion-option-button on-touch="deletePhase($index, phase)" class="button-assertive">Delete
+        <ion-option-button on-tap="deletePhase($index, phase)" class="button-assertive">Delete
         </ion-option-button>
         <ion-reorder-button class="ion-navicon"
                             on-reorder="moveItem(phase, $fromIndex, $toIndex)">
         </ion-reorder-button>
-        <ion-option-button on-touch="editPhase($index)" class="button-positive">Edit</ion-option-button>
+        <ion-option-button on-tap="editPhase($index)" class="button-positive">Edit</ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>
 
   <div class="bar-footer bar bar-balanced">
-    <div class="title" on-touch="saveTimerSet()">Save timer set</div>
+    <div class="title" on-tap="saveTimerSet()">Save timer set</div>
   </div>
 </ion-view>

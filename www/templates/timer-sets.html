@@ -1,6 +1,6 @@
 <ion-view view-title="Timer Sets">
   <ion-nav-buttons side="secondary">
-    <button class="button" on-touch="addTimerSet()">
+    <button class="button" on-tap="addTimerSet()">
       <i class="ion-ios-plus-outline"></i>
       Add Timer
     </button>
@@ -10,10 +10,10 @@
       <ion-item ng-repeat="set in timerSets" ui-sref="app.countDown({timerSetId: $index})">
         <h2>{{set.name}}</h2>
         <p>{{ set.phases.length }} phases ({{ totalTime(set) / 60 | number:1 }} minutes)</p>
-        <ion-option-button class="button-assertive" on-touch="deleteTimerSet($index)">
+        <ion-option-button class="button-assertive" on-tap="deleteTimerSet($index)">
           Delete
         </ion-option-button>
-        <ion-option-button class="button-positive" on-touch="editTimerSet($index)">
+        <ion-option-button class="button-positive" on-tap="editTimerSet($index)">
           Edit
         </ion-option-button>
       </ion-item>

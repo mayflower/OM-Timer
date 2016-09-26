@@ -13,7 +13,7 @@
           <div class="col">
             <!--Previous phase-->
             <button ng-hide="running" class="button button-clear button-light"
-                    on-touch="previousPhase()">
+                    on-tap="previousPhase()">
               <i class="ion-arrow-left-b"></i>
             </button>
           </div>
@@ -21,22 +21,22 @@
           <div class="col">
             <!--Reset timer-->
             <button ng-show="!running&&!resetted"
-                    on-touch="resetCountDown()"
+                    on-tap="resetCountDown()"
                     class="button button-light button-clear ion-refresh"></button>
             <!--Start timer-->
             <button class="button button-balanced ion-android-alarm-clock"
-                    on-touch="startCountDown()"
+                    on-tap="startCountDown()"
                     ng-show="!running&&resetted">
             </button>
-            <button ng-show="!running&&!resetted" on-touch="toggleCountDown()"
+            <button ng-show="!running&&!resetted" on-tap="toggleCountDown()"
                     class="button button-light button-clear ion-play"></button>
-            <button on-touch="stopCountDown()" ng-show="running"
+            <button on-tap="stopCountDown()" ng-show="running"
                     class="ion-pause button button-light button-clear"></button>
           </div>
 
           <div class="col">
             <!--Next phase-->
-            <button ng-hide="running" class="button button-clear button-light" on-touch="nextPhase()">
+            <button ng-hide="running" class="button button-clear button-light" on-tap="nextPhase()">
               <i class="ion-arrow-right-b"></i>
             </button>
           </div>
