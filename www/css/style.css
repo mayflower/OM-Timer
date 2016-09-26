@@ -4,16 +4,18 @@
   transition: all .3s linear;
 }
 
+.timer .seconds {
+  font-size: 7em;
+}
+
 .timer h1, .timer h2 {
-  color: white;
   padding: 0;
-  /*text-shadow: 1px 1px 3px rgba(0, 0, 0, .2);*/
   text-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+  color: white;
 }
 
 .timer .row button {
   background-color: rgba(255, 255, 255, .2);
-  color: white;
 }
 
 .pull-left {
@@ -23,3 +25,11 @@
 .pull-right {
   float: right;
 }
+
+/*.timer-content {*/
+  /*opacity: 0;*/
+/*}*/
+
+/*.timer-content {*/
+  /*opacity: 1;*/
+/*}*/

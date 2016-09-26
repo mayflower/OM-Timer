@@ -80,10 +80,10 @@
       })
       .state('app.reset', {
         url: '/reset',
-        onEnter: ['$state', 'localStorageService', 'initFactory', '$timeout',
-          function ($state, localStorageService, initFactory, $timeout) {
+        onEnter: ['$state', 'localStorageService', 'initialTemplate', '$timeout',
+          function ($state, localStorageService, initialTemplate, $timeout) {
             if (confirm('Really reset all data?')) {
-              localStorageService.set('timerSets', initFactory);
+              localStorageService.set('timerSets', initialTemplate);
             }
             $timeout(function () {
               $state.go('app.timerSets', {reload: true});

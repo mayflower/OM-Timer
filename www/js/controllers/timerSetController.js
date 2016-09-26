@@ -1,8 +1,8 @@
 !function (app) {
   'use strict';
   app.controller('TimerSetController', [
-    'timerSetId', '$scope', '$state', '$ionicListDelegate',
-    function (timerSetId, $scope, $state, $ionicListDelegate) {
+    'timerSetId', '$scope', '$state', '$ionicListDelegate', 'phaseTemplate',
+    function (timerSetId, $scope, $state, $ionicListDelegate, phaseTemplate) {
 
       function editPhase(phaseId) {
         $ionicListDelegate.closeOptionButtons();
@@ -10,7 +10,7 @@
       }
 
       function addPhase() {
-        $scope.timerSet.phases.push({});
+        $scope.timerSet.phases.push(phaseTemplate);
         $state.go('app.phaseEdit', {timerSetId: timerSetId, phaseId: $scope.timerSet.phases.length - 1});
       }
 

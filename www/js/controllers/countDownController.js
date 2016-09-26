@@ -22,9 +22,9 @@
       function countDown() {
         $scope.time--;
         if ($scope.time < 0) {
+          $scope.$emit('sound', $scope.currentPhase);
           try {
             nextPhase();
-            $scope.$emit('sound', $scope.currentPhase);
           } catch (err) {
             resetCountDown();
           }

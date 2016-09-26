@@ -1,45 +1,47 @@
 <ion-view view-title="{{ timerSet.name }}">
   <ion-content padding="true" class="timer">
-    <div class="text-center padding-vertical">
-      <h1 style="font-size: 7em;"> {{ time | secondsToTime }}</h1>
-    </div>
-    <div class="text-center padding-vertical">
-      <h2 class="padding-vertical">{{ currentPhase.name }}</h2>
-    </div>
-    <div class="text-center padding-vertical">
-      <div class="row">
+    <div class="timer-content">
+      <div class="text-center padding-vertical">
+        <h1 class="seconds"> {{ time | secondsToTime }}</h1>
+      </div>
+      <div class="text-center padding-vertical">
+        <h2 class="padding-vertical">{{ currentPhase.name }}</h2>
+      </div>
+      <div class="text-center padding-vertical">
+        <div class="row">
 
-        <div class="col">
-          <!--Previous phase-->
-          <button ng-hide="running" class="button button-clear button-light"
-                  on-touch="previousPhase()">
-            <i class="ion-arrow-left-b"></i>
-          </button>
+          <div class="col">
+            <!--Previous phase-->
+            <button ng-hide="running" class="button button-clear button-light"
+                    on-touch="previousPhase()">
+              <i class="ion-arrow-left-b"></i>
+            </button>
+          </div>
+
+          <div class="col">
+            <!--Reset timer-->
+            <button ng-show="!running&&!resetted"
+                    on-touch="resetCountDown()"
+                    class="button button-light button-clear ion-refresh"></button>
+            <!--Start timer-->
+            <button class="button button-balanced ion-android-alarm-clock"
+                    on-touch="startCountDown()"
+                    ng-show="!running&&resetted">
+            </button>
+            <button ng-show="!running&&!resetted" on-touch="toggleCountDown()"
+                    class="button button-light button-clear ion-play"></button>
+            <button on-touch="stopCountDown()" ng-show="running"
+                    class="ion-pause button button-light button-clear"></button>
+          </div>
+
+          <div class="col">
+            <!--Next phase-->
+            <button ng-hide="running" class="button button-clear button-light" on-touch="nextPhase()">
+              <i class="ion-arrow-right-b"></i>
+            </button>
+          </div>
+
         </div>
-
-        <div class="col">
-          <!--Reset timer-->
-          <button ng-show="!running&&!resetted"
-                  on-touch="resetCountDown()"
-                  class="button button-light button-clear ion-refresh"></button>
-          <!--Start timer-->
-          <button class="button button-balanced ion-android-alarm-clock"
-                  on-touch="startCountDown()"
-                  ng-show="!running&&resetted">
-          </button>
-          <button ng-show="!running&&!resetted" on-touch="toggleCountDown()"
-                  class="button button-light button-clear ion-play"></button>
-          <button on-touch="stopCountDown()" ng-show="running"
-                  class="ion-pause button button-light button-clear"></button>
-        </div>
-
-        <div class="col">
-          <!--Next phase-->
-          <button ng-hide="running" class="button button-clear button-light" on-touch="nextPhase()">
-            <i class="ion-arrow-right-b"></i>
-          </button>
-        </div>
-
       </div>
     </div>
   </ion-content>

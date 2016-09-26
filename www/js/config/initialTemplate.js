@@ -1,6 +1,6 @@
 !function (app) {
   'use strict';
-  app.factory('initFactory', function () {
+  app.factory('initialTemplate', function () {
     return [
       {
         name: 'Debugging',
