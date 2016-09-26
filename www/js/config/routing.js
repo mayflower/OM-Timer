@@ -13,24 +13,21 @@
         views: {
           'menuContent': {
             templateUrl: 'templates/timer-sets.html',
-            controller: 'DashboardController'
+            controller: 'TimerSetsController'
           }
         }
       })
-      .state('app.editTimerSet', {
-        url: '/timer-set/:id',
+      .state('app.timerSetEdit', {
+        url: '/timer-set/:timerSetId',
         views: {
           'menuContent': {
             templateUrl: 'templates/timer-set.html',
-            controller: 'EditTimerSetController'
+            controller: 'TimerSetController'
           }
         },
         resolve: {
-          index: ['$stateParams', function ($stateParams) {
-            return $stateParams.id
-          }],
-          timerSet: ['timerSetRepository', '$stateParams', function (timerSetRepository, $stateParams) {
-            return timerSetRepository.getByIndex($stateParams.id);
+          timerSetId: ['$stateParams', function ($stateParams) {
+            return $stateParams.timerSetId
           }]
         }
       })
@@ -39,7 +36,7 @@
         views: {
           'menuContent': {
             templateUrl: 'templates/phase.html',
-            controller: 'EditPhaseController'
+            controller: 'PhaseController'
           }
         },
         resolve: {
@@ -48,14 +45,11 @@
           }],
           phaseId: ['$stateParams', function ($stateParams) {
             return $stateParams.phaseId
-          }],
-          timerSet: ['timerSetRepository', '$stateParams', function (timerSetRepository, $stateParams) {
-            return timerSetRepository.getByIndex($stateParams.timerSetId);
           }]
         }
       })
       .state('app.countDown', {
-        url: '/count-down/:id',
+        url: '/count-down/:timerSetId',
         views: {
           'menuContent': {
             templateUrl: 'templates/countdown.html',
@@ -63,12 +57,12 @@
           }
         },
         resolve: {
-          timerSet: ['timerSetRepository', '$stateParams',
-            function (timerSetRepository, $stateParams) {
-              return timerSetRepository.getByIndex($stateParams.id);
-            }]
+          timerSetId: ['$stateParams', function ($stateParams) {
+            return $stateParams.timerSetId;
+          }]
         },
-        onEnter: ['timerSet', '$state', function (timerSet, $state) {
+        onEnter: ['$state', 'localStorageService', 'timerSetId', function ($state, localStorageService, timerSetId) {
+          var timerSet = localStorageService.get('timerSets')[timerSetId];
           if (!angular.isDefined(timerSet.phases) || timerSet.phases.length === 0) {
             alert('Missing timer phases. Please add them.');
             $state.go('app.timerSets');
@@ -86,12 +80,15 @@
       })
       .state('app.reset', {
         url: '/reset',
-        onEnter: ['$state', 'timerSetRepository', function ($state, timerSetRepository) {
-          if (confirm('Really reset all data?')) {
-            timerSetRepository.reset();
-          }
-          $state.go('app.timerSets', {reload: true});
-        }]
+        onEnter: ['$state', 'localStorageService', 'initFactory', '$timeout',
+          function ($state, localStorageService, initFactory, $timeout) {
+            if (confirm('Really reset all data?')) {
+              localStorageService.set('timerSets', initFactory);
+            }
+            $timeout(function () {
+              $state.go('app.timerSets', {reload: true});
+            }, 1000);
+          }]
       });
 
     $urlRouterProvider.otherwise('/app/timer-sets');

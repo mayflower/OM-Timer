@@ -1,21 +1,22 @@
-<ion-view view-title="Timer Sets" nav-back-button="hSD">
-    <ion-nav-buttons side="secondary">
-        <button class="button" data-ng-click="addTimerSet()">
-            Add
-        </button>
-    </ion-nav-buttons>
-    <ion-content>
-        <ion-list can-swipe="canSwipe" show-reorder="showReorder">
-            <ion-item ng-repeat="set in timerSets" ui-sref="app.countDown({id: $index})">
-                <h2>{{set.name}}</h2>
-                <p>{{ set.phases.length }} phases ({{ totalTime(set) / 60 | number:1 }} minutes)</p>
-                <ion-option-button class="button-assertive" on-tap="deleteTimerSet($index)">
-                    Delete
-                </ion-option-button>
-                <ion-option-button class="button-positive" on-tap="editTimerSet($index)">
-                    Edit
-                </ion-option-button>
-            </ion-item>
-        </ion-list>
-    </ion-content>
+<ion-view view-title="Timer Sets">
+  <ion-nav-buttons side="secondary">
+    <button class="button" on-touch="addTimerSet()">
+      <i class="ion-ios-plus-outline"></i>
+      Add Timer
+    </button>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list can-swipe="canSwipe">
+      <ion-item ng-repeat="set in timerSets" ui-sref="app.countDown({timerSetId: $index})">
+        <h2>{{set.name}}</h2>
+        <p>{{ set.phases.length }} phases ({{ totalTime(set) / 60 | number:1 }} minutes)</p>
+        <ion-option-button class="button-assertive" on-touch="deleteTimerSet($index)">
+          Delete
+        </ion-option-button>
+        <ion-option-button class="button-positive" on-touch="editTimerSet($index)">
+          Edit
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
 </ion-view>

@@ -2,13 +2,14 @@
   'use strict';
 
   app.controller('CountDownController', [
-    '$scope', 'timerSet', '$interval', '$window', '$ionicNavBarDelegate',
-    function ($scope, timerSet, $interval, $window, $ionicNavBarDelegate) {
+    '$scope', 'timerSetId', '$interval', '$window', '$ionicNavBarDelegate',
+    function ($scope, timerSetId, $interval, $window, $ionicNavBarDelegate) {
 
       var $runningInterval;
       var currentPhaseId = 0;
       var oneSecond = 1000;
       var insomnia = ($window.hasOwnProperty('plugins') && $window.plugins.hasOwnProperty('insomnia')) ? $window.plugins.insomnia : false;
+      var timerSet = $scope.timerSets[timerSetId];
 
       function preventScreenLock() {
         insomnia && insomnia.keepAwake();
