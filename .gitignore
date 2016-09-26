@@ -6,3 +6,4 @@ platforms/
 plugins/
 .io-config.json
 .idea
+my-release-key.keystore
