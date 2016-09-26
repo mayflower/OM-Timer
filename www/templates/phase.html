@@ -5,7 +5,7 @@
 
       <label class="item item-input item-floating-label">
         <span class="input-label">Phase name</span>
-        <input ng-model="phase.name" type="text" placeholder="Phase name" autofocus="true">
+        <input ng-model="phase.name" type="text" placeholder="Phase name" autofocus="">
       </label>
 
 
@@ -19,7 +19,7 @@
         <div class="input-label">
           Alarm sound
         </div>
-        <select ng-model="phase.alarmSound">
+        <select data-ng-model="phase.alarmSound">
           <option value="bing1">Bing 1</option>
           <option value="bing2">Bing 2</option>
           <option value="horn">Horn</option>
@@ -40,6 +40,6 @@
 
   </ion-content>
   <div class="bar-footer bar bar-balanced">
-    <div class="title" on-touch="save()">Save</div>
+    <div class="title" on-tap="save()">Save</div>
   </div>
 </ion-view>
