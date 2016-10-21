@@ -6,7 +6,7 @@
     function ($scope, $state, $ionicListDelegate) {
 
       function deleteTimerSet(index) {
-        if (confirm('Really delete this timer set?')) {
+        if (confirm('Really delete this timer?')) {
           $ionicListDelegate.closeOptionButtons();
           $scope.timerSets.splice(index, 1)
         }
