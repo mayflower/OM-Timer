@@ -12,7 +12,7 @@
 
           <div class="col">
             <!--Previous phase-->
-            <button ng-hide="running" class="button button-clear button-light"
+            <button ng-show="showPreviousControl()" class="button button-clear button-light"
                     on-tap="previousPhase()">
               <i class="ion-arrow-left-b"></i>
             </button>
@@ -36,7 +36,7 @@
 
           <div class="col">
             <!--Next phase-->
-            <button ng-hide="running" class="button button-clear button-light" on-tap="nextPhase()">
+            <button ng-show="showNextControl()" class="button button-clear button-light" on-tap="nextPhase()">
               <i class="ion-arrow-right-b"></i>
             </button>
           </div>

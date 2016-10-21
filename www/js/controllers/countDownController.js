@@ -54,6 +54,14 @@
         $scope.time = $scope.currentPhase.time;
       }
 
+      function showPreviousControl() {
+        return $scope.running === false && currentPhaseId > 0;
+      }
+
+      function showNextControl() {
+        return $scope.running === false && currentPhaseId < timerSet.phases.length - 1;
+      }
+
       function startCountDown() {
         $ionicNavBarDelegate.showBar(false);
         preventScreenLock();
@@ -98,6 +106,8 @@
       $scope.previousPhase = previousPhase;
       $scope.nextPhase = nextPhase;
       $scope.toggleCountDown = toggleCountDown;
+      $scope.showPreviousControl = showPreviousControl;
+      $scope.showNextControl = showNextControl;
       // Make sure that the interval is destroyed too
       $scope.$on('$destroy', function () {
         stopCountDown();
