@@ -7,6 +7,12 @@
   </ion-nav-buttons>
   <ion-content>
     <ion-list can-swipe="canSwipe">
+      <ion-item class="item-icon-left" ng-repeat="set in timerSets" on-tap="show(set, $index)">
+        <span class="icon ion-android-arrow-dropright-circle"></span>
+        {{set.name}}
+        <p>{{ set.phases.length }} phases ({{ totalTime(set) / 60 | number:1 }} minutes)</p>
+      </ion-item>
+      <!--
       <ion-item ng-repeat="set in timerSets" ui-sref="app.countDown({timerSetId: $index})">
         <h2>{{set.name}}</h2>
         <p>{{ set.phases.length }} phases ({{ totalTime(set) / 60 | number:1 }} minutes)</p>
@@ -17,6 +23,7 @@
           Edit
         </ion-option-button>
       </ion-item>
+      -->
     </ion-list>
   </ion-content>
 </ion-view>

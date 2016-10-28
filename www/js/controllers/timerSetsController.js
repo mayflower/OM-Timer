@@ -2,8 +2,8 @@
   'use strict';
 
   app.controller('TimerSetsController', [
-    '$scope', '$state', '$ionicListDelegate',
-    function ($scope, $state, $ionicListDelegate) {
+    '$scope', '$state', '$ionicListDelegate', '$ionicActionSheet', '$timeout',
+    function ($scope, $state, $ionicListDelegate, $ionicActionSheet, $timeout) {
 
       function deleteTimerSet(index) {
         if (confirm('Really delete this timer?')) {
@@ -45,6 +45,50 @@
       $scope.deleteTimerSet = deleteTimerSet;
       $scope.editTimerSet = editTimer;
       $scope.canSwipe = true;
+
+
+      // Triggered on a button click, or some other target
+      $scope.show = function (timer, idx) {
+
+        // Show the action sheet
+        var hideSheet = $ionicActionSheet.show({
+          buttons: [
+            {text: 'Start Timer'},
+            {text: 'Edit Timer'},
+          ],
+          destructiveText: 'Delete Timer',
+          destructiveButtonClicked: function () {
+            deleteTimerSet(idx);
+            hideSheet();
+          },
+          titleText: 'Modify timer "' + timer.name + '"',
+          cancelText: 'Cancel',
+          cancel: function () {
+            // add cancel code..
+          },
+          buttonClicked: function (index) {
+            switch (index) {
+              case 0:
+                $state.go("app.countDown", {timerSetId: idx});
+                break;
+              case 1:
+                editTimer(idx);
+                break;
+              default:
+                hideSheet();
+                break;
+            }
+            hideSheet();
+            return true;
+          }
+        });
+
+        // For example's sake, hide the sheet after two seconds
+        // $timeout(function () {
+        //   hideSheet();
+        // }, 2000);
+      };
+
     }]
   );
 
